@@ -7,7 +7,12 @@ class STWClientTest {
     @Test
     fun getShows() {
         val client = STWClient()
-        assert(!client.getShows().isEmpty());
+        val shows = client.getShows()
+        assert(!shows.isEmpty())
+        val show = shows.first()
+        assert(!show.title.isNullOrEmpty())
+        assert(!show.createdAt.isNullOrEmpty())
+        assert(!show.updatedAt.isNullOrEmpty())
     }
 
 }
