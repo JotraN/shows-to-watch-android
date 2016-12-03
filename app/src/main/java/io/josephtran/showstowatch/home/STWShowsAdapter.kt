@@ -39,8 +39,8 @@ class STWShowsAdapter : RecyclerView.Adapter<STWShowsAdapter.ViewHolder>() {
 
     override fun getItemCount(): Int = shows.size
 
-    fun addShow(show: STWShow) {
-        shows.add(show)
+    fun addShows(shows: List<STWShow>) {
+        this.shows.addAll(shows)
         notifyDataSetChanged()
     }
 }

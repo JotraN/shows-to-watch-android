@@ -3,10 +3,11 @@ package io.josephtran.showstowatch.api
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
+import rx.Observable
 import java.util.concurrent.TimeUnit
 
-public class STWClient {
-    private val stwService: STWService;
+class STWClient {
+    private val stwService: STWService
     private val stwUrl = "http://showstowatch.josephtran.io/"
 
     init {
@@ -23,10 +24,14 @@ public class STWClient {
         stwService = retrofit.create(STWService::class.java)
     }
 
-    public fun getShows(): List<STWShow> {
+    private fun getSTWShows(): List<STWShow> {
         val shows = stwService.listShows()
         val response = shows.execute()
         if (response.isSuccessful) return response.body()
         return emptyList()
+    }
+
+    fun getShows(): Observable<List<STWShow>> {
+        return Observable.defer { Observable.just(getSTWShows()) }
     }
 }
