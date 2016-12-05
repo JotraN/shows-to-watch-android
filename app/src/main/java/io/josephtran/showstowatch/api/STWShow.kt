@@ -10,5 +10,6 @@ data class STWShow(
         @Json(name = "created_at")
         val createdAt: String,
         @Json(name = "updated_at")
-        val updatedAt: String
+        val updatedAt: String,
+        val banner: String
 )

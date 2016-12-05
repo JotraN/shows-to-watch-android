@@ -1,25 +1,29 @@
 package io.josephtran.showstowatch.home
 
+import android.content.Context
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
+import com.squareup.picasso.Picasso
 import io.josephtran.showstowatch.R
 import io.josephtran.showstowatch.api.STWShow
+import io.josephtran.showstowatch.api.TVDB_IMG_URL
 import java.util.*
 
 
-class STWShowsAdapter : RecyclerView.Adapter<STWShowsAdapter.ViewHolder>() {
+class STWShowsAdapter(val context: Context) : RecyclerView.Adapter<STWShowsAdapter.ViewHolder>() {
     val shows = ArrayList<STWShow>()
 
     class ViewHolder(itemView: View?) : RecyclerView.ViewHolder(itemView) {
-        val titleTv: TextView =
+        val titleTv =
                 itemView!!.findViewById(R.id.stw_title_text) as TextView
-        val seasonTv: TextView =
-                itemView!!.findViewById(R.id.stw_season_text) as TextView
-        val episodeTv: TextView =
-                itemView!!.findViewById(R.id.stw_episode_text) as TextView
+        val seasonEpisodeTv =
+                itemView!!.findViewById(R.id.stw_season_episode_text) as TextView
+        val bannerIv =
+                itemView!!.findViewById(R.id.stw_banner_image) as ImageView
     }
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ViewHolder {
@@ -32,8 +36,10 @@ class STWShowsAdapter : RecyclerView.Adapter<STWShowsAdapter.ViewHolder>() {
         if (holder != null) {
             val show = shows.get(position)
             holder.titleTv.text = show.title
-            holder.seasonTv.text = show.season.toString()
-            holder.episodeTv.text = show.episode.toString()
+            holder.seasonEpisodeTv.text = "S${show.season} E${show.episode}"
+            Picasso.with(context)
+                    .load(TVDB_IMG_URL + show.banner)
+                    .into(holder.bannerIv);
         }
     }
 

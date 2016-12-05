@@ -3,6 +3,8 @@ package io.josephtran.showstowatch.home
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v4.app.Fragment
+import android.support.v4.content.ContextCompat
+import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
@@ -12,7 +14,7 @@ import io.josephtran.showstowatch.api.STWShow
 import kotlinx.android.synthetic.main.fragment_home.*
 
 class HomeFragment : Fragment(), HomeView {
-    var adapter = STWShowsAdapter()
+    val adapter by lazy { STWShowsAdapter(context) }
     val progressView by lazy { home_progress }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
@@ -25,6 +27,10 @@ class HomeFragment : Fragment(), HomeView {
         home_recycler.layoutManager = LinearLayoutManager(context)
         home_recycler.setHasFixedSize(true)
         home_recycler.adapter = adapter
+
+        val divider = DividerItemDecoration(context, LinearLayoutManager.VERTICAL)
+        divider.setDrawable(ContextCompat.getDrawable(context, R.drawable.stw_show_item_divider))
+        home_recycler.addItemDecoration(divider)
 
         val presenter = HomePresenter(this)
         presenter.downloadShows()
