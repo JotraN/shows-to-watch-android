@@ -17,6 +17,10 @@ class HomeFragment : Fragment(), HomeView {
     val adapter by lazy { STWShowsAdapter(context) }
     val progressView by lazy { home_progress }
 
+    companion object {
+        fun newInstance() = HomeFragment()
+    }
+
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         return inflater!!.inflate(R.layout.fragment_home, container, false)
