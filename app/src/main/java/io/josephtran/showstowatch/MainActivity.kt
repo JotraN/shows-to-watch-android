@@ -6,6 +6,7 @@ import io.josephtran.showstowatch.home.HomeFragment
 import io.josephtran.showstowatch.login.LoginFragment
 
 val PREF_STW_KEY = "PREF_STW_KEY"
+val PREF_STW_USER_KEY = "PREF_STW_USER_KEY"
 val PREF_STW_TOKEN_KEY = "PREF_STW_TOKEN_KEY"
 
 class MainActivity : AppCompatActivity(), LoginFragment.LoginFragmentListener {

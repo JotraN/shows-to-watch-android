@@ -3,10 +3,9 @@ package io.josephtran.showstowatch.api
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
-import rx.Observable
 import java.util.concurrent.TimeUnit
 
-class STWClient {
+class STWClient(val user: String, val token: String) {
     private val stwService: STWService
 
     init {
@@ -23,18 +22,36 @@ class STWClient {
         stwService = retrofit.create(STWService::class.java)
     }
 
-    private fun getSTWShows(): List<STWShow> {
-        val shows = stwService.listShows()
-        val response = shows.execute()
+    fun getShows(): List<STWShow> {
+        val response = stwService.listShows().execute()
         if (response.isSuccessful) return response.body()
         return emptyList()
-    }
-
-    fun getShows(): Observable<List<STWShow>> {
-        return Observable.defer { Observable.just(getSTWShows()) }
     }
 
     fun getLoginUrl() = "${STW_BASE_URL}users/sign_in"
 
     fun getRedirectUrl() = "${STW_BASE_URL}users/request_token.json"
+
+    fun addShow(show: STWShow): STWShow? {
+        val response = stwService.addShow(user, token, show).execute()
+        if (response.isSuccessful) return response.body()
+        return null
+    }
+
+    fun deleteShow(show: STWShow): Boolean {
+        val response = stwService.deleteShow(user, token, show.id!!).execute()
+        return response.isSuccessful && response.body().has("success")
+    }
+
+    fun editShow(show: STWShow): STWShow? {
+        val response = stwService.editShow(user, token, show.id!!, show).execute()
+        if (response.isSuccessful) return response.body()
+        return null
+    }
+
+    fun searchTVDBShow(show: STWShow): List<TVDBShow> {
+        val response = stwService.searchTVDBShow(user, token, show.id!!).execute()
+        if (response.isSuccessful) return response.body()
+        return emptyList()
+    }
 }

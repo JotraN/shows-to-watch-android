@@ -36,7 +36,7 @@ class HomeFragment : Fragment(), HomeView {
         divider.setDrawable(ContextCompat.getDrawable(context, R.drawable.stw_show_item_divider))
         home_recycler.addItemDecoration(divider)
 
-        val presenter = HomePresenter(this)
+        val presenter = HomePresenter(context, this)
         presenter.downloadShows()
     }
 

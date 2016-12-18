@@ -1,20 +1,60 @@
 package io.josephtran.showstowatch.api
 
+import org.junit.Before
+import org.junit.Ignore
 import org.junit.Test
 
 class STWClientTest {
+    private lateinit var client: STWClient
+    private lateinit var show: STWShow
+
+    @Before
+    fun setUp() {
+        val user = System.getenv("STW_USER");
+        val token = System.getenv("STW_TOKEN")
+        client = STWClient(user, token)
+        show = STWShow(null, "Show")
+    }
 
     @Test
     fun getShows() {
-        val client = STWClient()
-        client.getShows()
-                .subscribe {
-                    shows ->
-                    assert(!shows.isEmpty())
-                    val show = shows.first()
-                    assert(!show.title.isNullOrEmpty())
-                    assert(!show.createdAt.isNullOrEmpty())
-                    assert(!show.updatedAt.isNullOrEmpty())
-                }
+        val shows = client.getShows()
+        assert(!shows.isEmpty())
+    }
+
+    @Test
+    fun addShow() {
+        val addedShow = client.addShow(show)!!
+        // Delete created show.
+        client.deleteShow(addedShow)
+        assert(!addedShow.title.isNullOrEmpty())
+        assert(!addedShow.createdAt.isNullOrEmpty())
+        assert(!addedShow.updatedAt.isNullOrEmpty())
+    }
+
+    @Ignore("JSONObject always returns null since android mocks it for testing")
+    fun deleteShow() {
+        val addedShow = client.addShow(show)!!
+        assert(client.deleteShow(addedShow))
+    }
+
+    @Test
+    fun editShow() {
+        val addedShow = client.addShow(show)!!
+        val editShowTitle = "Show Edit"
+        val newShow = STWShow(addedShow.id, editShowTitle)
+        val editedShow = client.editShow(newShow)!!
+        // Delete created show.
+        client.deleteShow(editedShow)
+        assert(editedShow.title == editShowTitle)
+    }
+
+    @Test
+    fun searchTVDBShow() {
+        val addedShow = client.addShow(show)!!
+        val tvdbResults = client.searchTVDBShow(addedShow)
+        // Delete created show.
+        client.deleteShow(addedShow)
+        assert(!tvdbResults.isEmpty())
     }
 }
