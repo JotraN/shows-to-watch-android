@@ -25,6 +25,18 @@ class STWClientWrapper(val context: Context) {
         return Observable.defer { Observable.just(stwClient.getShows()) }
     }
 
+    fun getInProgressShows(): Observable<List<STWShow>> {
+        return Observable.defer { Observable.just(stwClient.getInProgressShows()) }
+    }
+
+    fun getAbandonedShows(): Observable<List<STWShow>> {
+        return Observable.defer { Observable.just(stwClient.getAbandonedShows()) }
+    }
+
+    fun getCompletedShows(): Observable<List<STWShow>> {
+        return Observable.defer { Observable.just(stwClient.getCompletedShows()) }
+    }
+
     fun addShow(show: STWShow): Observable<STWShow?> {
         return Observable.defer { Observable.just(stwClient.addShow(show)) }
     }

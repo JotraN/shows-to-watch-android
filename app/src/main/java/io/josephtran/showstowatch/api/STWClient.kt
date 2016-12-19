@@ -22,15 +22,33 @@ class STWClient(val user: String, val token: String) {
         stwService = retrofit.create(STWService::class.java)
     }
 
+    fun getLoginUrl() = "${STW_BASE_URL}users/sign_in"
+
+    fun getRedirectUrl() = "${STW_BASE_API_URL}users/request_token.json"
+
     fun getShows(): List<STWShow> {
         val response = stwService.listShows().execute()
         if (response.isSuccessful) return response.body()
         return emptyList()
     }
 
-    fun getLoginUrl() = "${STW_BASE_URL}users/sign_in"
+    fun getInProgressShows(): List<STWShow> {
+        val response = stwService.listInProgressShows().execute()
+        if (response.isSuccessful) return response.body()
+        return emptyList()
+    }
 
-    fun getRedirectUrl() = "${STW_BASE_API_URL}users/request_token.json"
+    fun getAbandonedShows(): List<STWShow> {
+        val response = stwService.listAbandonedShows().execute()
+        if (response.isSuccessful) return response.body()
+        return emptyList()
+    }
+
+    fun getCompletedShows(): List<STWShow> {
+        val response = stwService.listCompletedShows().execute()
+        if (response.isSuccessful) return response.body()
+        return emptyList()
+    }
 
     fun addShow(show: STWShow): STWShow? {
         val response = stwService.addShow(user, token, show).execute()

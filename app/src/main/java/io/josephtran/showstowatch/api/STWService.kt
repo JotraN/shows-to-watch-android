@@ -12,6 +12,15 @@ interface STWService {
     @GET("shows.json")
     fun listShows(): Call<List<STWShow>>
 
+    @GET("shows/in_progress.json")
+    fun listInProgressShows(): Call<List<STWShow>>
+
+    @GET("shows/abandoned.json")
+    fun listAbandonedShows(): Call<List<STWShow>>
+
+    @GET("shows/completed.json")
+    fun listCompletedShows(): Call<List<STWShow>>
+
     @POST("shows.json")
     fun addShow(@Header("X-User-Email") email: String,
                 @Header("X-User-Token") token: String,

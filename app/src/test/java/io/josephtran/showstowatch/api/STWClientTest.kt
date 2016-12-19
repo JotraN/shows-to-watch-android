@@ -17,8 +17,36 @@ class STWClientTest {
     }
 
     @Test
+    fun getLoginUrl() {
+        assert(client.getLoginUrl() == "${STW_BASE_URL}users/sign_in")
+    }
+
+    @Test
+    fun getRedirectUrl() {
+        assert(client.getRedirectUrl() == "${STW_BASE_API_URL}users/request_token.json")
+    }
+
+    @Test
     fun getShows() {
         val shows = client.getShows()
+        assert(!shows.isEmpty())
+    }
+
+    @Test
+    fun getInProgressShows() {
+        val shows = client.getInProgressShows()
+        assert(!shows.isEmpty())
+    }
+
+    @Test
+    fun getAbandonedShows() {
+        val shows = client.getAbandonedShows()
+        assert(!shows.isEmpty())
+    }
+
+    @Test
+    fun getCompletedShows() {
+        val shows = client.getCompletedShows()
         assert(!shows.isEmpty())
     }
 
