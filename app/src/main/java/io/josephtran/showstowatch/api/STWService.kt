@@ -4,7 +4,8 @@ import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.http.*
 
-val STW_BASE_URL = "http://showstowatch.josephtran.io/api/"
+val STW_BASE_URL = "http://showstowatch.josephtran.io/"
+val STW_BASE_API_URL = "${STW_BASE_URL}api/"
 val TVDB_IMG_URL = "http://thetvdb.com/banners/"
 
 interface STWService {

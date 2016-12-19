@@ -15,7 +15,7 @@ class STWClient(val user: String, val token: String) {
                 .writeTimeout(60, TimeUnit.SECONDS)
                 .build()
         val retrofit = Retrofit.Builder()
-                .baseUrl(STW_BASE_URL)
+                .baseUrl(STW_BASE_API_URL)
                 .client(httpClient)
                 .addConverterFactory(MoshiConverterFactory.create())
                 .build()
@@ -30,7 +30,7 @@ class STWClient(val user: String, val token: String) {
 
     fun getLoginUrl() = "${STW_BASE_URL}users/sign_in"
 
-    fun getRedirectUrl() = "${STW_BASE_URL}users/request_token.json"
+    fun getRedirectUrl() = "${STW_BASE_API_URL}users/request_token.json"
 
     fun addShow(show: STWShow): STWShow? {
         val response = stwService.addShow(user, token, show).execute()

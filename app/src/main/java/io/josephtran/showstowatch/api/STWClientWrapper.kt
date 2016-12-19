@@ -11,9 +11,9 @@ class STWClientWrapper(val context: Context) {
 
     init {
         val user = context.getSharedPreferences(PREF_STW_KEY, Context.MODE_PRIVATE)
-                .getString(PREF_STW_USER_KEY, null)
+                .getString(PREF_STW_USER_KEY, "")
         val token = context.getSharedPreferences(PREF_STW_KEY, Context.MODE_PRIVATE)
-                .getString(PREF_STW_TOKEN_KEY, null)
+                .getString(PREF_STW_TOKEN_KEY, "")
         stwClient = STWClient(user, token)
     }
 
