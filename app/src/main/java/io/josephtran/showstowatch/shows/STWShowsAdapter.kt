@@ -1,6 +1,7 @@
-package io.josephtran.showstowatch.home
+package io.josephtran.showstowatch.shows
 
 import android.content.Context
+import android.graphics.Color
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -18,10 +19,9 @@ class STWShowsAdapter(val context: Context) : RecyclerView.Adapter<STWShowsAdapt
     val shows = ArrayList<STWShow>()
 
     class ViewHolder(itemView: View?) : RecyclerView.ViewHolder(itemView) {
+        val overlay = itemView!!.findViewById(R.id.stw_overlay)
         val titleTv =
                 itemView!!.findViewById(R.id.stw_title_text) as TextView
-        val seasonEpisodeTv =
-                itemView!!.findViewById(R.id.stw_season_episode_text) as TextView
         val bannerIv =
                 itemView!!.findViewById(R.id.stw_banner_image) as ImageView
     }
@@ -35,12 +35,20 @@ class STWShowsAdapter(val context: Context) : RecyclerView.Adapter<STWShowsAdapt
     override fun onBindViewHolder(holder: ViewHolder?, position: Int) {
         if (holder != null) {
             val show = shows.get(position)
+            holder.overlay.setBackgroundColor(getColor(show))
             holder.titleTv.text = show.title
-            holder.seasonEpisodeTv.text = "S${show.season} E${show.episode}"
             Picasso.with(context)
                     .load(TVDB_IMG_URL + show.banner)
                     .into(holder.bannerIv);
         }
+    }
+
+    private fun getColor(show: STWShow): Int {
+        if (show.completed)
+            return context.resources.getColor(R.color.darkGreen)
+        if (show.abandoned)
+            return context.resources.getColor(R.color.darkRed)
+        return Color.BLACK
     }
 
     override fun getItemCount(): Int = shows.size

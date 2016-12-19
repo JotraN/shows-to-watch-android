@@ -1,4 +1,4 @@
-package io.josephtran.showstowatch.home
+package io.josephtran.showstowatch.shows
 
 import io.josephtran.showstowatch.api.STWShow
 

@@ -13,5 +13,7 @@ data class STWShow(
         @Json(name = "updated_at")
         val updatedAt: String = "",
         val banner: String = "",
-        val tvdbId: String = ""
+        val tvdbId: String = "",
+        val abandoned: Boolean = false,
+        val completed: Boolean = false
 )

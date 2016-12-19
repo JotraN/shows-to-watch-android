@@ -1,4 +1,4 @@
-package io.josephtran.showstowatch.home
+package io.josephtran.showstowatch.shows
 
 import android.content.Context
 import android.util.Log
@@ -8,7 +8,7 @@ import rx.Subscriber
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
 
-class HomePresenter(val context: Context, val view: HomeView) {
+class ShowsPresenter(val context: Context, val view: HomeView) {
     val client = STWClientWrapper(context)
 
     fun downloadShows() {
