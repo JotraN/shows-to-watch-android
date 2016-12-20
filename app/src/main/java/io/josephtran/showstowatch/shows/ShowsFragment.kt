@@ -11,12 +11,21 @@ import io.josephtran.showstowatch.R
 import io.josephtran.showstowatch.api.STWShow
 import kotlinx.android.synthetic.main.fragment_shows.*
 
-class ShowsFragment : Fragment(), HomeView {
+
+class ShowsFragment : Fragment(), ShowsView {
     val adapter by lazy { STWShowsAdapter(context) }
     val progressView by lazy { home_progress }
 
     companion object {
-        fun newInstance() = ShowsFragment()
+        val SHOWS_TYPE = "SHOWS TYPE"
+
+        fun newInstance(typeIndex: Int): ShowsFragment {
+            val fragment = ShowsFragment()
+            val args = Bundle()
+            args.putInt(SHOWS_TYPE, typeIndex)
+            fragment.setArguments(args)
+            return fragment
+        }
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
@@ -31,7 +40,8 @@ class ShowsFragment : Fragment(), HomeView {
         home_recycler.adapter = adapter
 
         val presenter = ShowsPresenter(context, this)
-        presenter.downloadShows()
+        val typeIndex = getArguments().getInt(SHOWS_TYPE, 0)
+        presenter.downloadShows(typeIndex)
     }
 
     override fun addShows(shows: List<STWShow>) {

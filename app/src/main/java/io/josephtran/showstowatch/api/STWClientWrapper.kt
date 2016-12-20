@@ -1,9 +1,9 @@
 package io.josephtran.showstowatch.api
 
 import android.content.Context
-import io.josephtran.showstowatch.PREF_STW_KEY
-import io.josephtran.showstowatch.PREF_STW_TOKEN_KEY
-import io.josephtran.showstowatch.PREF_STW_USER_KEY
+import io.josephtran.showstowatch.shows.PREF_STW_KEY
+import io.josephtran.showstowatch.shows.PREF_STW_TOKEN_KEY
+import io.josephtran.showstowatch.shows.PREF_STW_USER_KEY
 import rx.Observable
 
 class STWClientWrapper(val context: Context) {

@@ -2,7 +2,7 @@ package io.josephtran.showstowatch.shows
 
 import io.josephtran.showstowatch.api.STWShow
 
-interface HomeView {
+interface ShowsView {
     /**
      * Adds the given list of shows to the view.
      */

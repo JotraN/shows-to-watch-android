@@ -1,11 +1,11 @@
 package io.josephtran.showstowatch.login
 
 import android.content.Context
-import io.josephtran.showstowatch.PREF_STW_KEY
-import io.josephtran.showstowatch.PREF_STW_TOKEN_KEY
-import io.josephtran.showstowatch.PREF_STW_USER_KEY
 import io.josephtran.showstowatch.api.STWClientWrapper
 import io.josephtran.showstowatch.api.STW_BASE_URL
+import io.josephtran.showstowatch.shows.PREF_STW_KEY
+import io.josephtran.showstowatch.shows.PREF_STW_TOKEN_KEY
+import io.josephtran.showstowatch.shows.PREF_STW_USER_KEY
 
 class LoginPresenter(val context: Context, val view: LoginView) : LoginListener {
     val client = STWClientWrapper(context)
