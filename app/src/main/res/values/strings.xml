@@ -2,4 +2,15 @@
     <string name="app_name">Shows To Watch</string>
 
     <string name="action_login">Login</string>
+
+    <string name="show_form_def_title">Show Form Title</string>
+    <string name="show_form_title_label">Title</string>
+    <string name="show_form_title_hint">Name</string>
+    <string name="show_form_season_label">Season</string>
+    <string name="show_form_episode_label">Episode</string>
+    <string name="show_form_num_hint">0</string>
+    <string name="show_form_status_label">Status</string>
+    <string name="show_form_in_progress_label">In Progress</string>
+    <string name="show_form_abandoned_label">Abandoned</string>
+    <string name="show_form_completed_label">Completed</string>
 </resources>

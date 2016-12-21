@@ -9,6 +9,7 @@ import android.view.Menu
 import android.view.MenuItem
 import io.josephtran.showstowatch.R
 import io.josephtran.showstowatch.login.LoginActivity
+import io.josephtran.showstowatch.show_form.ShowFormActivity
 import kotlinx.android.synthetic.main.activity_shows.*
 
 val PREF_STW_KEY = "PREF_STW_KEY"
@@ -37,6 +38,8 @@ class ShowsActivity : AppCompatActivity() {
         }
         pager.setCurrentItem(ShowsPresenter.getTypeIndex(ShowsPresenter.IN_PROGRESS_SHOWS), true)
         shows_tab_layout.setupWithViewPager(pager)
+
+        shows_fab.setOnClickListener { startActivity(Intent(this, ShowFormActivity::class.java)) }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
