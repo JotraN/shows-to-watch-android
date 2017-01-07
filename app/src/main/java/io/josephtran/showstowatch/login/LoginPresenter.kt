@@ -23,11 +23,15 @@ class LoginPresenter(val context: Context, val view: LoginView) : LoginListener 
     }
 
     override fun onRedirect(html: String) {
-        if (html.contains("token")) {
+        val userString = "user\":\""
+        val tokenString = "token\":\""
+        if (html.contains(userString) && html.contains(tokenString)) {
             val editor = context.getSharedPreferences(PREF_STW_KEY, Context.MODE_PRIVATE).edit()
-            val user = html.substring(html.indexOf("user\":\""), html.indexOf("\","))
+            val user = html.substring(html.indexOf(userString) + userString.length,
+                    html.indexOf("\","))
             editor.putString(PREF_STW_USER_KEY, user)
-            val token = html.substring(html.indexOf("token\":\""), html.indexOf("\"}"))
+            val token = html.substring(html.indexOf(tokenString) + tokenString.length,
+                    html.indexOf("\"}"))
             editor.putString(PREF_STW_TOKEN_KEY, token)
             editor.apply()
             view.showHome()
