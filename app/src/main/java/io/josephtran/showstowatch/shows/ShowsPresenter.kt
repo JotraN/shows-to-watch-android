@@ -8,8 +8,8 @@ import rx.Subscriber
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
 
-class ShowsPresenter(val context: Context, val view: ShowsView) {
-    val client = STWClientWrapper(context)
+class ShowsPresenter(context: Context, val view: ShowsView) {
+    private val client = STWClientWrapper(context)
 
     companion object {
         val ALL_SHOWS = "All"

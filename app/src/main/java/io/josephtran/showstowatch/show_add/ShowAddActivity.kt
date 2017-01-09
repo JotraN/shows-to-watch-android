@@ -1,4 +1,4 @@
-package io.josephtran.showstowatch.show_form
+package io.josephtran.showstowatch.show_add
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -7,7 +7,7 @@ import android.view.MenuItem
 
 import io.josephtran.showstowatch.R
 
-internal class ShowFormActivity : AppCompatActivity() {
+internal class ShowAddActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,7 +20,7 @@ internal class ShowFormActivity : AppCompatActivity() {
         }
         if (savedInstanceState != null) return
         supportFragmentManager.beginTransaction()
-                .add(R.id.show_form_fragment_container, ShowFormFragment.newInstance()).commit()
+                .add(R.id.show_form_fragment_container, ShowAddFragment.newInstance()).commit()
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

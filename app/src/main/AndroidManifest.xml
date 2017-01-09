@@ -18,7 +18,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".login.LoginActivity" />
-        <activity android:name=".show_form.ShowFormActivity" />
+        <activity android:name=".show_add.ShowAddActivity" />
     </application>
 
 </manifest>

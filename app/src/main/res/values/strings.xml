@@ -13,4 +13,5 @@
     <string name="show_form_in_progress_label">In Progress</string>
     <string name="show_form_abandoned_label">Abandoned</string>
     <string name="show_form_completed_label">Completed</string>
+    <string name="show_form_action_add">Add</string>
 </resources>
