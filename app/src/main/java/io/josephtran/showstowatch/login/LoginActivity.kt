@@ -1,11 +1,11 @@
 package io.josephtran.showstowatch.login
 
-import android.content.Intent
 import android.os.Bundle
+import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import io.josephtran.showstowatch.R
-import io.josephtran.showstowatch.shows.ShowsActivity
 
+val LOGIN_SUCCESS_CODE = 2
 
 class LoginActivity : AppCompatActivity(), LoginFragment.LoginFragmentListener {
 
@@ -18,9 +18,9 @@ class LoginActivity : AppCompatActivity(), LoginFragment.LoginFragmentListener {
     }
 
     override fun onLoggedIn() {
-        val intent = Intent(this, ShowsActivity::class.java)
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
-        startActivity(intent)
+        Snackbar.make(findViewById(R.id.login_fragment_container),
+                "User logged in.", Snackbar.LENGTH_SHORT).show()
+        setResult(LOGIN_SUCCESS_CODE)
         finish()
     }
 }

@@ -2,6 +2,7 @@
     <string name="app_name">Shows To Watch</string>
 
     <string name="action_login">Login</string>
+    <string name="action_logout">Logout</string>
 
     <string name="show_form_def_title">Show Form Title</string>
     <string name="show_form_title_label">Title</string>
