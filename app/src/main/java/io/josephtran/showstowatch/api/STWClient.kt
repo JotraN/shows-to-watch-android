@@ -50,9 +50,16 @@ class STWClient(val user: String, val token: String) {
         return emptyList()
     }
 
+    private fun authenticateUser(responseMessage: String) {
+        val UNAUTHORIZED_MESSAGE = "Unauthorized"
+        if (responseMessage == UNAUTHORIZED_MESSAGE)
+            throw STWUnauthorizedException()
+    }
+
     fun addShow(show: STWShow): STWShow? {
         val response = stwService.addShow(user, token, show).execute()
         if (response.isSuccessful) return response.body()
+        authenticateUser(response.message())
         return null
     }
 
@@ -64,12 +71,14 @@ class STWClient(val user: String, val token: String) {
     fun editShow(show: STWShow): STWShow? {
         val response = stwService.editShow(user, token, show.id!!, show).execute()
         if (response.isSuccessful) return response.body()
+        authenticateUser(response.message())
         return null
     }
 
     fun searchTVDBShow(show: STWShow): List<TVDBShow> {
         val response = stwService.searchTVDBShow(user, token, show.id!!).execute()
         if (response.isSuccessful) return response.body()
+        authenticateUser(response.message())
         return emptyList()
     }
 }

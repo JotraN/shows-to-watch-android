@@ -77,7 +77,7 @@ class ShowsPresenter(context: Context, val view: ShowsView) {
 
         override fun onNext(shows: List<STWShow>?) {
             if (shows == null) view.showError(errorMessage)
-            else view.addShows(shows)
+            else view.addShows(shows.sortedByDescending(STWShow::updatedAt))
         }
 
         override fun onCompleted() {

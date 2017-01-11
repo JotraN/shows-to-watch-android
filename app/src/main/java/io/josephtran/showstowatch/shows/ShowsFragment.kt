@@ -41,8 +41,9 @@ class ShowsFragment : Fragment(), ShowsView {
 
         val presenter = ShowsPresenter(context, this)
         val typeIndex = arguments.getInt(SHOWS_TYPE, 0)
-        if (adapter.shows.isEmpty())
-            presenter.downloadShows(typeIndex)
+        if (!adapter.shows.isEmpty())
+            adapter.shows.clear()
+        presenter.downloadShows(typeIndex)
     }
 
     override fun addShows(shows: List<STWShow>) {

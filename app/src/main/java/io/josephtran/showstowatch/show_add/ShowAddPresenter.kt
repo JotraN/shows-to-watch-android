@@ -13,12 +13,14 @@ class ShowAddPresenter(context: Context, val view: ShowFormView) {
         stwClient.addShow(show)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({
-                    s ->
-                    if (s == null)
-                        view.showMessage("Failed")
-                    else
-                        view.showMessage("Added show")
-                })
+                .subscribe(
+                        { s ->
+                            if (s == null)
+                                view.showErrorMessage("Failed to add show.")
+                            else {
+                                view.closeView()
+                            }
+                        }, { e -> view.showErrorMessage(e.message!!) }
+                )
     }
 }

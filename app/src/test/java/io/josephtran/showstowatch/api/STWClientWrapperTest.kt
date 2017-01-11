@@ -11,8 +11,8 @@ import org.mockito.ArgumentMatchers.*
 import org.mockito.Mockito
 
 class STWClientWrapperTest {
-    val sharedPrefs = Mockito.mock(SharedPreferences::class.java)
-    val context = Mockito.mock(Context::class.java)
+    private val sharedPrefs = Mockito.mock(SharedPreferences::class.java)
+    private val context = Mockito.mock(Context::class.java)
     private lateinit var client: STWClientWrapper
     private lateinit var show: STWShow
 

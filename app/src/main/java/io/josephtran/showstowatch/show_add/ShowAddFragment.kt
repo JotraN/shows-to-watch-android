@@ -3,6 +3,7 @@ package io.josephtran.showstowatch.show_add
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v4.app.Fragment
+import android.text.Html
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +11,8 @@ import io.josephtran.showstowatch.R
 import io.josephtran.showstowatch.api.STWShow
 import kotlinx.android.synthetic.main.activity_show_form.*
 import kotlinx.android.synthetic.main.fragment_show_form.*
+
+val SHOW_ADD_SUCCESS_CODE = 4
 
 class ShowAddFragment : Fragment(), ShowFormView {
 
@@ -46,26 +49,37 @@ class ShowAddFragment : Fragment(), ShowFormView {
 
     private fun fieldsValid(): Boolean {
         var message = ""
-        if (show_form_title_label.text.isNullOrEmpty()) {
+        if (show_form_title_edit.text.isNullOrEmpty()) {
             message = "Title required."
         } else if (show_form_season_edit.text.isNullOrEmpty()) {
             message = "Season required."
         } else if (show_form_episode_edit.text.isNullOrEmpty()) {
             message = "Episode required."
         }
-        if (message.isNullOrEmpty()) {
-            showMessage(message)
+        if (!message.isNullOrEmpty()) {
+            showErrorMessage(message)
             return false
         }
         return true
     }
 
-    override fun showMessage(message: String) {
+    private fun showMessage(message: String, color: String) {
         if (view != null)
-            Snackbar.make(view!!, message, Snackbar.LENGTH_SHORT).show()
+            Snackbar.make(view!!,
+                    Html.fromHtml("<font color=\"$color\">$message</font>"),
+                    Snackbar.LENGTH_SHORT).show()
+    }
+
+    override fun showMessage(message: String) {
+        showMessage(message, "white")
+    }
+
+    override fun showErrorMessage(errorMessage: String) {
+        showMessage(errorMessage, "red")
     }
 
     override fun closeView() {
+        activity.setResult(SHOW_ADD_SUCCESS_CODE)
         activity.finish()
     }
 }
