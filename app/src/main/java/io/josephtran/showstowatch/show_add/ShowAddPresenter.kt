@@ -6,7 +6,7 @@ import io.josephtran.showstowatch.api.STWShow
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
 
-class ShowAddPresenter(context: Context, val view: ShowFormView) {
+class ShowAddPresenter(context: Context, val view: ShowAddView) {
     private val stwClient = STWClientWrapper(context)
 
     fun addShow(show: STWShow) {
@@ -17,9 +17,8 @@ class ShowAddPresenter(context: Context, val view: ShowFormView) {
                         { s ->
                             if (s == null)
                                 view.showErrorMessage("Failed to add show.")
-                            else {
-                                view.closeView()
-                            }
+                            else
+                                view.onShowAdded(s)
                         }, { e -> view.showErrorMessage(e.message!!) }
                 )
     }

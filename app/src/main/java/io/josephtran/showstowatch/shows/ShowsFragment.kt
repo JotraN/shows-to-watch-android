@@ -41,8 +41,8 @@ class ShowsFragment : Fragment(), ShowsView {
 
         val presenter = ShowsPresenter(context, this)
         val typeIndex = arguments.getInt(SHOWS_TYPE, 0)
-        if (!adapter.shows.isEmpty())
-            adapter.shows.clear()
+        if (adapter.itemCount > 0)
+            adapter.clear()
         presenter.downloadShows(typeIndex)
     }
 

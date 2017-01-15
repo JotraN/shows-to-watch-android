@@ -1,5 +1,6 @@
 package io.josephtran.showstowatch.show_add
 
+import android.content.Context
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v4.app.Fragment
@@ -12,9 +13,12 @@ import io.josephtran.showstowatch.api.STWShow
 import kotlinx.android.synthetic.main.activity_show_form.*
 import kotlinx.android.synthetic.main.fragment_show_form.*
 
-val SHOW_ADD_SUCCESS_CODE = 4
+class ShowAddFragment : Fragment(), ShowAddView {
+    private var listener: OnShowAddedListener? = null
 
-class ShowAddFragment : Fragment(), ShowFormView {
+    interface OnShowAddedListener {
+        fun onShowAdded(show: STWShow)
+    }
 
     companion object {
         fun newInstance() = ShowAddFragment()
@@ -32,6 +36,15 @@ class ShowAddFragment : Fragment(), ShowFormView {
             }
         }
         return view
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        try {
+            listener = activity as OnShowAddedListener?
+        } catch (e: ClassCastException) {
+            throw ClassCastException(activity.toString() + " must implement OnShowAddedListener")
+        }
     }
 
     private fun constructShow(): STWShow? {
@@ -78,8 +91,8 @@ class ShowAddFragment : Fragment(), ShowFormView {
         showMessage(errorMessage, "red")
     }
 
-    override fun closeView() {
-        activity.setResult(SHOW_ADD_SUCCESS_CODE)
-        activity.finish()
+    override fun onShowAdded(show: STWShow) {
+        if (listener != null)
+            listener!!.onShowAdded(show)
     }
 }

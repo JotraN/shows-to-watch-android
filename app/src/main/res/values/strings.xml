@@ -4,6 +4,7 @@
     <string name="action_login">Login</string>
     <string name="action_logout">Logout</string>
 
+    <string name="show_form_toolbar_button">Button</string>
     <string name="show_form_def_title">Show Form Title</string>
     <string name="show_form_title_label">Title</string>
     <string name="show_form_title_hint">Name</string>
@@ -15,4 +16,6 @@
     <string name="show_form_abandoned_label">Abandoned</string>
     <string name="show_form_completed_label">Completed</string>
     <string name="show_form_action_add">Add</string>
+
+    <string name="show_search_title">Set TVDB Show</string>
 </resources>

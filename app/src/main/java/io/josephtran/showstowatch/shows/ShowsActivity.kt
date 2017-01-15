@@ -1,5 +1,6 @@
 package io.josephtran.showstowatch.shows
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -10,7 +11,6 @@ import android.view.MenuItem
 import io.josephtran.showstowatch.R
 import io.josephtran.showstowatch.login.LOGIN_SUCCESS_CODE
 import io.josephtran.showstowatch.login.LoginActivity
-import io.josephtran.showstowatch.show_add.SHOW_ADD_SUCCESS_CODE
 import io.josephtran.showstowatch.show_add.ShowAddActivity
 import kotlinx.android.synthetic.main.activity_shows.*
 
@@ -30,7 +30,9 @@ class ShowsActivity : AppCompatActivity() {
         shows_pager.setCurrentItem(ShowsPresenter.getTypeIndex(ShowsPresenter.IN_PROGRESS_SHOWS), true)
         shows_tab_layout.setupWithViewPager(shows_pager)
 
-        shows_fab.setOnClickListener { startActivity(Intent(this, ShowAddActivity::class.java)) }
+        shows_fab.setOnClickListener {
+            startActivityForResult(Intent(this, ShowAddActivity::class.java), SHOW_ADD_REQUEST_CODE)
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -72,12 +74,13 @@ class ShowsActivity : AppCompatActivity() {
                     Snackbar.make(shows_pager, "User logged in.", Snackbar.LENGTH_SHORT).show()
                     invalidateOptionsMenu()
                 }
-            SHOW_ADD_REQUEST_CODE ->
-                if (resultCode == SHOW_ADD_SUCCESS_CODE) {
+            SHOW_ADD_REQUEST_CODE -> {
+                if (resultCode == Activity.RESULT_OK) {
                     Snackbar.make(shows_pager, "Show added.", Snackbar.LENGTH_SHORT).show()
-                    // Refresh page adapter.
-                    shows_pager.adapter = ShowsPagerAdapter(supportFragmentManager)
                 }
+                // Always refresh page adapter.
+                shows_pager.adapter = ShowsPagerAdapter(supportFragmentManager)
+            }
         }
     }
 }

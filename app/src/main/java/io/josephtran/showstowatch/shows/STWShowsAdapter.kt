@@ -16,7 +16,7 @@ import java.util.*
 
 
 class STWShowsAdapter(val context: Context) : RecyclerView.Adapter<STWShowsAdapter.ViewHolder>() {
-    val shows = ArrayList<STWShow>()
+    private val shows = ArrayList<STWShow>()
 
     class ViewHolder(itemView: View?) : RecyclerView.ViewHolder(itemView) {
         val overlay = itemView!!.findViewById(R.id.stw_overlay)
@@ -28,7 +28,7 @@ class STWShowsAdapter(val context: Context) : RecyclerView.Adapter<STWShowsAdapt
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ViewHolder {
         val v = LayoutInflater.from(parent!!.context)
-                .inflate(R.layout.stw_show_item, parent, false)
+                .inflate(R.layout.show_item, parent, false)
         return ViewHolder(v)
     }
 
@@ -57,4 +57,6 @@ class STWShowsAdapter(val context: Context) : RecyclerView.Adapter<STWShowsAdapt
         this.shows.addAll(shows)
         notifyDataSetChanged()
     }
+
+    fun clear() = shows.clear()
 }
