@@ -22,8 +22,9 @@ class ShowSearchPresenter(context: Context, val view: ShowSearchView) {
                 }, { e -> view.onTVDBSet() })
     }
 
-    fun setTvdbShow(show: STWShow, tvdbShow: TVDBShow) {
+    fun setTVDBShow(show: STWShow, tvdbShow: TVDBShow) {
         view.showProgress(true)
+        show.title = tvdbShow.title
         show.tvdbId = tvdbShow.id.toString()
         show.banner = tvdbShow.banner
         stwClient.editShow(show)

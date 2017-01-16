@@ -1,6 +1,5 @@
 package io.josephtran.showstowatch.api
 
-import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -29,7 +28,7 @@ interface STWService {
     @DELETE("shows/{showId}.json")
     fun deleteShow(@Header("X-User-Email") email: String,
                    @Header("X-User-Token") token: String,
-                   @Path("showId") id: Int): Call<JSONObject>
+                   @Path("showId") id: Int): Call<String>
 
     @PATCH("shows/{showId}.json")
     fun editShow(@Header("X-User-Email") email: String,

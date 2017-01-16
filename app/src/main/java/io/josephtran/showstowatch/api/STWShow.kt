@@ -7,7 +7,7 @@ import com.squareup.moshi.Json
 data class STWShow(
         var id: Int?,
         @Json(name = "name")
-        val title: String,
+        var title: String,
         val season: Int = 0,
         val episode: Int = 0,
         @Json(name = "created_at")
@@ -15,6 +15,7 @@ data class STWShow(
         @Json(name = "updated_at")
         val updatedAt: String = "",
         var banner: String = "",
+        @Json(name = "tvdb_id")
         var tvdbId: String = "",
         val abandoned: Boolean = false,
         val completed: Boolean = false

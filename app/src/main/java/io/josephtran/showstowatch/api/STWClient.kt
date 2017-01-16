@@ -3,6 +3,7 @@ package io.josephtran.showstowatch.api
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
+import retrofit2.converter.scalars.ScalarsConverterFactory
 import java.util.concurrent.TimeUnit
 
 class STWClient(val user: String, val token: String) {
@@ -17,6 +18,7 @@ class STWClient(val user: String, val token: String) {
         val retrofit = Retrofit.Builder()
                 .baseUrl(STW_BASE_API_URL)
                 .client(httpClient)
+                .addConverterFactory(ScalarsConverterFactory.create())
                 .addConverterFactory(MoshiConverterFactory.create())
                 .build()
         stwService = retrofit.create(STWService::class.java)
@@ -65,7 +67,7 @@ class STWClient(val user: String, val token: String) {
 
     fun deleteShow(show: STWShow): Boolean {
         val response = stwService.deleteShow(user, token, show.id!!).execute()
-        return response.isSuccessful && response.body().has("success")
+        return response.isSuccessful && response.body().contains("success")
     }
 
     fun editShow(show: STWShow): STWShow? {
