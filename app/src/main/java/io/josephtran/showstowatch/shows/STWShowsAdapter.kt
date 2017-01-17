@@ -15,15 +15,24 @@ import io.josephtran.showstowatch.api.TVDB_IMG_URL
 import java.util.*
 
 
-class STWShowsAdapter(val context: Context) : RecyclerView.Adapter<STWShowsAdapter.ViewHolder>() {
+class STWShowsAdapter(val context: Context, val listener: ShowsAdapterListener)
+    : RecyclerView.Adapter<STWShowsAdapter.ViewHolder>() {
     private val shows = ArrayList<STWShow>()
 
-    class ViewHolder(itemView: View?) : RecyclerView.ViewHolder(itemView) {
+    interface ShowsAdapterListener {
+        fun onClick(show: STWShow)
+    }
+
+    inner class ViewHolder(itemView: View?) : RecyclerView.ViewHolder(itemView) {
         val overlay = itemView!!.findViewById(R.id.stw_overlay)
         val titleTv =
                 itemView!!.findViewById(R.id.stw_title_text) as TextView
         val bannerIv =
                 itemView!!.findViewById(R.id.stw_banner_image) as ImageView
+
+        init {
+            itemView!!.setOnClickListener { listener.onClick(shows[adapterPosition]) }
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ViewHolder {

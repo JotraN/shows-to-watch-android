@@ -16,7 +16,7 @@ data class STWShow(
         val updatedAt: String = "",
         var banner: String = "",
         @Json(name = "tvdb_id")
-        var tvdbId: String = "",
+        var tvdbId: String? = "",
         val abandoned: Boolean = false,
         val completed: Boolean = false
 ) : Parcelable {

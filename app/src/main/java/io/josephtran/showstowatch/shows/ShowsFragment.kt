@@ -1,5 +1,6 @@
 package io.josephtran.showstowatch.shows
 
+import android.content.Context
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v4.app.Fragment
@@ -13,8 +14,20 @@ import kotlinx.android.synthetic.main.fragment_shows.*
 
 
 class ShowsFragment : Fragment(), ShowsView {
-    val adapter by lazy { STWShowsAdapter(context) }
-    val progressView by lazy { home_progress }
+    private val adapter by lazy {
+        STWShowsAdapter(context,
+                object : STWShowsAdapter.ShowsAdapterListener {
+                    override fun onClick(show: STWShow) {
+                        if (listener != null) listener!!.onShowClicked(show)
+                    }
+                })
+    }
+    private val progressView by lazy { home_progress }
+    private var listener: OnShowClickedListener? = null
+
+    interface OnShowClickedListener {
+        fun onShowClicked(show: STWShow)
+    }
 
     companion object {
         val SHOWS_TYPE = "SHOWS TYPE"
@@ -23,7 +36,7 @@ class ShowsFragment : Fragment(), ShowsView {
             val fragment = ShowsFragment()
             val args = Bundle()
             args.putInt(SHOWS_TYPE, typeIndex)
-            fragment.setArguments(args)
+            fragment.arguments = args
             return fragment
         }
     }
@@ -44,6 +57,16 @@ class ShowsFragment : Fragment(), ShowsView {
         if (adapter.itemCount > 0)
             adapter.clear()
         presenter.downloadShows(typeIndex)
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        try {
+            listener = activity as OnShowClickedListener?
+        } catch (e: ClassCastException) {
+            throw ClassCastException(activity.toString()
+                    + " must implement OnShowClickedListener")
+        }
     }
 
     override fun addShows(shows: List<STWShow>) {
