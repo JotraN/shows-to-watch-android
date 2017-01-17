@@ -60,7 +60,7 @@ class ShowSearchFragment : Fragment(), ShowSearchView {
         val adapter = ShowSearchAdapter(context,
                 object : ShowSearchAdapter.ShowSearchAdapterListener {
                     override fun onClick(tvdbShow: TVDBShow) {
-                        presenter.setTvdbShow(show!!, tvdbShow)
+                        presenter.setTVDBShow(show!!, tvdbShow)
                     }
                 })
         adapter.addAll(tvdbShows)

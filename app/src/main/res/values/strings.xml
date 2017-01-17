@@ -15,7 +15,13 @@
     <string name="show_form_in_progress_label">In Progress</string>
     <string name="show_form_abandoned_label">Abandoned</string>
     <string name="show_form_completed_label">Completed</string>
+    <string name="show_form_tvdb_button">Set TVDB Info</string>
+    <string name="show_form_delete_button">Delete Show</string>
+    <string name="show_form_delete_prompt">Delete show?</string>
+    <string name="show_form_positive_button">OK</string>
+    <string name="show_form_negative_button">Cancel</string>
     <string name="show_form_action_add">Add</string>
+    <string name="show_form_action_save">Save</string>
 
     <string name="show_search_title">Set TVDB Show</string>
 </resources>
