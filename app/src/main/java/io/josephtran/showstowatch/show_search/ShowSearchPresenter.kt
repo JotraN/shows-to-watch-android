@@ -30,6 +30,6 @@ class ShowSearchPresenter(context: Context, val view: ShowSearchView) {
         stwClient.editShow(show)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe { view.onTVDBSet() }
+                .subscribe({ view.onTVDBSet() }, { e -> view.onTVDBSet() })
     }
 }
