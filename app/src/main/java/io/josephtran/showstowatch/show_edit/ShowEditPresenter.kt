@@ -1,6 +1,7 @@
 package io.josephtran.showstowatch.show_edit
 
 import android.content.Context
+import android.util.Log
 import io.josephtran.showstowatch.api.STWClientWrapper
 import io.josephtran.showstowatch.api.STWShow
 import io.josephtran.showstowatch.show_form.ShowFormView
@@ -20,7 +21,11 @@ class ShowEditPresenter(context: Context, val view: ShowFormView) {
                                 view.showErrorMessage("Failed to edit show.")
                             else
                                 view.onShowHandled(s)
-                        }, { e -> view.showErrorMessage(e.message!!) }
+                        },
+                        { e ->
+                            view.showErrorMessage(e.toString())
+                            Log.e(javaClass.name, "Failed editing show.", e)
+                        }
                 )
     }
 
@@ -34,7 +39,11 @@ class ShowEditPresenter(context: Context, val view: ShowFormView) {
                                 view.onShowHandled(show)
                             else
                                 view.showErrorMessage("Failed to delete show.")
-                        }, { e -> view.showErrorMessage(e.message!!) }
+                        },
+                        { e ->
+                            view.showErrorMessage(e.toString())
+                            Log.e(javaClass.name, "Failed deleting show.", e)
+                        }
                 )
     }
 }

@@ -1,6 +1,7 @@
 package io.josephtran.showstowatch.show_add
 
 import android.content.Context
+import android.util.Log
 import io.josephtran.showstowatch.api.STWClientWrapper
 import io.josephtran.showstowatch.api.STWShow
 import io.josephtran.showstowatch.show_form.ShowFormView
@@ -20,7 +21,11 @@ class ShowAddPresenter(context: Context, val view: ShowFormView) {
                                 view.showErrorMessage("Failed to add show.")
                             else
                                 view.onShowHandled(s)
-                        }, { e -> view.showErrorMessage(e.message!!) }
+                        },
+                        { e ->
+                            view.showErrorMessage(e.toString())
+                            Log.e(javaClass.name, "Failed adding show.", e)
+                        }
                 )
     }
 }
