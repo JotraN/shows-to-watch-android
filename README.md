@@ -1,3 +1,4 @@
+![banner](screenshots/banner.png)  
 # Shows To Watch Android Application
 Interact with the <a href="http://showstowatch.josephtran.io"> Shows to Watch</a> site using an android application.
 
