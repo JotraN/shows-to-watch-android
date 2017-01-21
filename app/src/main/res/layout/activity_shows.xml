@@ -16,7 +16,7 @@
             android:id="@+id/shows_toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
+            app:layout_scrollFlags="scroll|enterAlways"
             app:popupTheme="@style/AppTheme.PopupOverlay"
             app:title="@string/app_name" />
 
@@ -24,6 +24,7 @@
             android:id="@+id/shows_tab_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:layout_scrollFlags="scroll|enterAlways"
             app:tabSelectedTextColor="@android:color/white"
             app:tabTextAppearance="@style/ShowsTabLayoutStyle"
             app:tabTextColor="@color/colorAccent" />
