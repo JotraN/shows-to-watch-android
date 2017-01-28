@@ -4,7 +4,7 @@ import android.content.Context
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v4.app.Fragment
-import android.support.v7.widget.GridLayoutManager
+import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -48,7 +48,7 @@ class ShowsFragment : Fragment(), ShowsView {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        home_recycler.layoutManager = GridLayoutManager(context, 3)
+        home_recycler.layoutManager = LinearLayoutManager(context)
         home_recycler.setHasFixedSize(true)
         home_recycler.adapter = adapter
 
