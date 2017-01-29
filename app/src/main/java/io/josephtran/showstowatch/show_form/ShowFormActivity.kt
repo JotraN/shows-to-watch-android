@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
+import android.widget.ImageView
 import io.josephtran.showstowatch.R
 import io.josephtran.showstowatch.api.STWShow
 import io.josephtran.showstowatch.show_search.ShowSearchFragment
@@ -24,11 +25,17 @@ abstract class ShowFormActivity : AppCompatActivity(),
             supportActionBar!!.setDisplayShowHomeEnabled(true)
         }
         if (savedInstanceState != null) return
+        loadToolbarImage(show_form_toolbar_image)
+        show_form_toolbar_title.text = getToolbarTitle()
         supportFragmentManager.beginTransaction()
                 .add(R.id.show_form_fragment_container, getFragment()).commit()
     }
 
     abstract protected fun getFragment(): Fragment
+
+    abstract protected fun loadToolbarImage(toolbarImage: ImageView)
+
+    abstract protected fun getToolbarTitle(): String
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId === android.R.id.home) {

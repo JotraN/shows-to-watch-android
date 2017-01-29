@@ -16,29 +16,18 @@
         tools:context="io.josephtran.showstowatch.show_form.ShowFormFragment">
 
         <TextView
-            android:id="@+id/show_form_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/show_form_def_title"
-            android:textColor="@android:color/white"
-            android:textSize="24sp" />
-
-        <TextView
             android:id="@+id/show_form_title_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="@string/show_form_title_label"
-            android:textColor="@android:color/white" />
+            android:text="@string/show_form_title_label" />
 
         <EditText
             android:id="@+id/show_form_title_edit"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/colorAccent"
             android:hint="@string/show_form_title_hint"
             android:inputType="textPersonName"
-            android:textColor="@android:color/white"
             android:textColorHint="@android:color/darker_gray" />
 
         <TextView
@@ -47,17 +36,14 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:labelFor="@+id/show_form_season_edit"
-            android:text="@string/show_form_season_label"
-            android:textColor="@android:color/white" />
+            android:text="@string/show_form_season_label" />
 
         <EditText
             android:id="@+id/show_form_season_edit"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/colorAccent"
             android:inputType="number"
             android:text="@string/show_form_num_hint"
-            android:textColor="@android:color/white"
             android:textColorHint="@android:color/darker_gray" />
 
         <TextView
@@ -66,17 +52,14 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:labelFor="@+id/show_form_episode_edit"
-            android:text="@string/show_form_episode_label"
-            android:textColor="@android:color/white" />
+            android:text="@string/show_form_episode_label" />
 
         <EditText
             android:id="@+id/show_form_episode_edit"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/colorAccent"
             android:inputType="number"
             android:text="@string/show_form_num_hint"
-            android:textColor="@android:color/white"
             android:textColorHint="@android:color/darker_gray" />
 
         <TextView
@@ -84,39 +67,34 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="@string/show_form_status_label"
-            android:textColor="@android:color/white" />
+            android:text="@string/show_form_status_label" />
 
         <RadioGroup
             android:id="@+id/show_form_progress_btns"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@android:color/white">
+            android:layout_height="wrap_content">
 
             <RadioButton
                 android:id="@+id/show_form_in_progress"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:buttonTint="@color/colorAccent"
+                android:buttonTint="@android:color/black"
                 android:checked="true"
-                android:text="@string/show_form_in_progress_label"
-                android:textColor="@android:color/white" />
+                android:text="@string/show_form_in_progress_label" />
 
             <RadioButton
                 android:id="@+id/show_form_abandoned"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:buttonTint="@color/colorAccent"
-                android:text="@string/show_form_abandoned_label"
-                android:textColor="@android:color/white" />
+                android:buttonTint="@android:color/black"
+                android:text="@string/show_form_abandoned_label" />
 
             <RadioButton
                 android:id="@+id/show_form_completed"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:buttonTint="@color/colorAccent"
-                android:text="@string/show_form_completed_label"
-                android:textColor="@android:color/white" />
+                android:buttonTint="@android:color/black"
+                android:text="@string/show_form_completed_label" />
         </RadioGroup>
     </LinearLayout>
 </ScrollView>
