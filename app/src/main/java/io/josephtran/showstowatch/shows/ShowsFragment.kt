@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -27,6 +28,8 @@ class ShowsFragment : Fragment(), ShowsView {
 
     interface OnShowClickedListener {
         fun onShowClicked(show: STWShow)
+
+        fun onShowsScrolled(dx: Int, dy: Int)
     }
 
     companion object {
@@ -51,6 +54,12 @@ class ShowsFragment : Fragment(), ShowsView {
         home_recycler.layoutManager = LinearLayoutManager(context)
         home_recycler.setHasFixedSize(true)
         home_recycler.adapter = adapter
+        home_recycler.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+                if (listener != null) listener!!.onShowsScrolled(dx, dy)
+            }
+        })
 
         val presenter = ShowsPresenter(context, this)
         val typeIndex = arguments.getInt(SHOWS_TYPE, 0)
