@@ -30,7 +30,6 @@
                 android:contentDescription="@null"
                 android:fitsSystemWindows="true"
                 android:scaleType="centerCrop"
-                android:transitionName="@string/show_image_transition"
                 app:layout_collapseMode="parallax" />
 
             <View
