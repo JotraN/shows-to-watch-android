@@ -20,6 +20,7 @@ abstract class ShowFormActivity : AppCompatActivity(),
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_show_form)
         setSupportActionBar(show_form_toolbar)
+        supportActionBar!!.setDisplayShowTitleEnabled(false)
         if (supportActionBar != null) {
             supportActionBar!!.setDisplayHomeAsUpEnabled(true)
             supportActionBar!!.setDisplayShowHomeEnabled(true)
@@ -53,7 +54,7 @@ abstract class ShowFormActivity : AppCompatActivity(),
 
     protected fun openSearch(show: STWShow) {
         show_form_toolbar.removeView(show_form_toolbar_btns_layout)
-        show_form_toolbar.title = getString(R.string.show_search_title)
+        show_form_toolbar_title.text = getString(R.string.show_search_title) + ": ${show.title}"
         supportFragmentManager.beginTransaction()
                 .replace(R.id.show_form_fragment_container,
                         ShowSearchFragment.newInstance(show), SHOW_SEARCH_FRAGMENT_TAG)
