@@ -76,6 +76,7 @@ class ShowsPresenter(context: Context, val view: ShowsView) {
         private val errorMessage = "Error downloading shows."
 
         override fun onNext(shows: List<STWShow>?) {
+            view.showProgress(false)
             if (shows == null) view.showError(errorMessage)
             else view.addShows(shows.sortedByDescending(STWShow::updatedAt))
         }

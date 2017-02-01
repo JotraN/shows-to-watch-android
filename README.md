@@ -3,6 +3,7 @@
 Interact with the <a href="http://showstowatch.josephtran.io"> Shows to Watch</a> site using an android application.
 
 <img src="screenshots/shows.png" alt="shows" width="300px"/>
+<img src="screenshots/edit_show.png" alt="edit_show" width="300px"/>
 <img src="screenshots/add_show.png" alt="add_show" width="300px"/>
 <img src="screenshots/show_search.png" alt="show_search" width="300px"/>
 

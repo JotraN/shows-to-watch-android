@@ -24,7 +24,6 @@
             android:id="@+id/shows_tab_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_scrollFlags="scroll|enterAlways"
             app:tabSelectedTextColor="@android:color/white"
             app:tabTextAppearance="@style/ShowsTabLayoutStyle"
             app:tabTextColor="@color/colorAccent" />
@@ -35,7 +34,7 @@
         android:id="@+id/shows_pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorPrimaryDark"
+        android:background="#808080"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
     <android.support.design.widget.FloatingActionButton

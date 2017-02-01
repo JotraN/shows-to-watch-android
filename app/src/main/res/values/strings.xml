@@ -22,6 +22,7 @@
     <string name="show_form_negative_button">Cancel</string>
     <string name="show_form_action_add">Add</string>
     <string name="show_form_action_save">Save</string>
+    <string name="show_form_add_title">Add Show</string>
 
     <string name="show_search_title">Set TVDB Show</string>
 </resources>

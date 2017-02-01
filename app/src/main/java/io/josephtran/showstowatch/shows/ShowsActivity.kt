@@ -1,5 +1,7 @@
 package io.josephtran.showstowatch.shows
 
+import android.animation.Animator
+import android.animation.AnimatorListenerAdapter
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
@@ -8,6 +10,8 @@ import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
+import android.view.ViewAnimationUtils
 import io.josephtran.showstowatch.R
 import io.josephtran.showstowatch.api.STWShow
 import io.josephtran.showstowatch.login.LOGIN_SUCCESS_CODE
@@ -25,6 +29,7 @@ class ShowsActivity : AppCompatActivity(), ShowsFragment.OnShowClickedListener {
     private val LOGIN_REQUEST_CODE = 1
     private val SHOW_ADD_REQUEST_CODE = 2
     private val SHOW_EDIT_REQUEST_CODE = 3
+    private var fabAnimator: Animator? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,6 +41,35 @@ class ShowsActivity : AppCompatActivity(), ShowsFragment.OnShowClickedListener {
         shows_fab.setOnClickListener {
             startActivityForResult(Intent(this, ShowAddActivity::class.java), SHOW_ADD_REQUEST_CODE)
         }
+        shows_fab.visibility = View.INVISIBLE
+        shows_fab.post { showShowsFab() }
+    }
+
+    private fun fabAnimationRunning(): Boolean = fabAnimator != null && fabAnimator!!.isRunning
+
+    private fun showShowsFab() {
+        if (shows_fab.visibility == View.VISIBLE || fabAnimationRunning())
+            return
+        val animator = ViewAnimationUtils.createCircularReveal(shows_fab,
+                shows_fab.measuredWidth / 2, shows_fab.measuredHeight / 2,
+                0f, shows_fab.width / 2f)
+        shows_fab.visibility = View.VISIBLE
+        animator.start()
+    }
+
+    private fun hideShowsFab() {
+        if (shows_fab.visibility == View.INVISIBLE || fabAnimationRunning())
+            return
+        fabAnimator = ViewAnimationUtils.createCircularReveal(shows_fab,
+                shows_fab.measuredWidth / 2, shows_fab.measuredHeight / 2,
+                shows_fab.width / 2f, 0f)
+        fabAnimator!!.addListener(object : AnimatorListenerAdapter() {
+            override fun onAnimationEnd(animation: Animator?) {
+                super.onAnimationEnd(animation)
+                shows_fab.visibility = View.INVISIBLE
+            }
+        })
+        fabAnimator!!.start()
     }
 
     private fun refreshShows() {
@@ -107,4 +141,6 @@ class ShowsActivity : AppCompatActivity(), ShowsFragment.OnShowClickedListener {
         intent.putExtra(SHOW_EDIT_ID, show)
         startActivityForResult(intent, SHOW_EDIT_REQUEST_CODE)
     }
+
+    override fun onShowsScrolled(dx: Int, dy: Int) = if (dy > 0) hideShowsFab() else showShowsFab()
 }
